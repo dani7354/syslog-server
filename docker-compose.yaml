@@ -4,8 +4,8 @@ services:
       image: rsyslog
       build:
         context: ./
-        dockerfile: docker/nginx/Dockerfile
+        dockerfile: Dockerfile
       volumes: 
-        - "./log:/var/log"
+        - "./log:/var/log/remote"
       ports: 
         - 514:514
