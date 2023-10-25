@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  rsyslog:
+      image: rsyslog
+      build:
+        context: ./
+        dockerfile: docker/nginx/Dockerfile
+      volumes: 
+        - "./log:/var/log"
+      ports: 
+        - 514:514
