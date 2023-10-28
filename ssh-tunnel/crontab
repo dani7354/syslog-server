@@ -1,0 +1,2 @@
+SHELL=/bin/bash
+* * * * * /opt/ssh_tunnel/connect_to_hosts.sh
