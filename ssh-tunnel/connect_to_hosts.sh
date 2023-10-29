@@ -1,6 +1,6 @@
 #!/bin/bash
 RSYSLOG_HOST="rsyslog"
-REMOTE_PORT="5555"
+REMOTE_PORT="5514"
 SSH_DIR="/opt/ssh_tunnel/.ssh"
 SSH_HOSTS_LIST_FILE="${SSH_DIR}/host_list"
 SSH_KNOWN_HOSTS_PATH="${SSH_DIR}/known_hosts"
