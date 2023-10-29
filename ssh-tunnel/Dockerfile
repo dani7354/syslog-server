@@ -12,5 +12,6 @@ COPY ./ssh-tunnel/crontab .
 RUN crontab ./crontab
 
 RUN mkdir .ssh
+RUN mkdir .secret
 
 CMD ["crond", "-f"]
