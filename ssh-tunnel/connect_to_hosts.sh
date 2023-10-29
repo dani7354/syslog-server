@@ -6,9 +6,9 @@ SSH_HOSTS_LIST_FILE="${SSH_DIR}/host_list"
 SSH_KNOWN_HOSTS_PATH="${SSH_DIR}/known_hosts"
 SSH_CONFIG_PATH="${SSH_DIR}/config"
 
-[[ ! -r "$SSH_HOSTS_LIST_FILE" ]] || { echo "$SSH_HOSTS_LIST_FILE does not exist" >&2 ; exit 1; }
-[[ ! -r "$SSH_KNOWN_HOSTS_PATH" ]] || { echo "${SSH_KNOWN_HOSTS_PATH} does not exist" >&2 ; exit 1; }
-[[ ! -r "$SSH_PRIVATE_KEY_PATH" ]] || { echo "${SSH_PRIVATE_KEY_PATH} does not exist" >&2 ; exit 1; }
+[[ ! -f "$SSH_HOSTS_LIST_FILE" ]] || { echo "$SSH_HOSTS_LIST_FILE does not exist" >&2 ; exit 1; }
+[[ ! -f "$SSH_KNOWN_HOSTS_PATH" ]] || { echo "${SSH_KNOWN_HOSTS_PATH} does not exist" >&2 ; exit 1; }
+[[ ! -f "$SSH_PRIVATE_KEY_PATH" ]] || { echo "${SSH_PRIVATE_KEY_PATH} does not exist" >&2 ; exit 1; }
 
 readarray -t hosts < "$SSH_HOSTS_LIST_FILE" 
 
