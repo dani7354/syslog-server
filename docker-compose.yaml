@@ -6,7 +6,7 @@ services:
         context: ./
         dockerfile: ./ssh-tunnel/Dockerfile
       volumes:
-        - ".ssh:/opt/ssh_tunnel/.ssh:ro"
+        - "/.ssh:/opt/ssh_tunnel/.ssh:ro"
       networks:
         - localnetwork
   rsyslog:
