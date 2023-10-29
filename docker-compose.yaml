@@ -3,8 +3,8 @@ services:
   ssh-tunnel:
       image: ssh-tunnel
       build:
-        context: ./ssh-tunnel
-        dockerfile: Dockerfile
+        context: ./
+        dockerfile: ./ssh-tunnel/Dockerfile
       volumes:
         - ".ssh:/opt/ssh_tunnel/.ssh:ro"
       networks:
@@ -12,8 +12,8 @@ services:
   rsyslog:
       image: rsyslog
       build:
-        context: ./rsyslog
-        dockerfile: Dockerfile
+        context: ./
+        dockerfile: ./rsyslog/Dockerfile
       volumes:
         - "./log:/var/log/remote"
       ports:
