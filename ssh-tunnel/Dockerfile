@@ -8,7 +8,7 @@ WORKDIR /opt/ssh_tunnel
 COPY connect_to_hosts.sh .
 RUN chmod +x connect_to_hosts.sh
 
-COPY crontab .
+COPY ./crontab .
 RUN crontab ./crontab
 
 RUN mkdir .ssh

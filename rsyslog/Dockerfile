@@ -5,7 +5,7 @@ RUN mkdir -p /var/log/remote
 RUN chmod 775 /var/log/remote
 RUN chown -R syslog:syslog /var/log/remote
 
-COPY rsyslog.conf /etc/rsyslog.conf
+COPY ./rsyslog.conf /etc/rsyslog.conf
 
 EXPOSE 514
 ENTRYPOINT ["rsyslogd", "-n"]
