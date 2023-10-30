@@ -1,23 +1,22 @@
 version: "3.9"
 services:
   ssh-tunnel:
-      image: ssh-tunnel
+      image: dsp8ef9/syslog_ssh:latest
       build:
         context: ./
         dockerfile: ./ssh-tunnel/Dockerfile
       volumes:
-        - "/.ssh:/opt/ssh_tunnel/.ssh:ro"
+        - "./ssh:/opt/ssh_tunnel/.ssh:ro"
+        - "./secret:/opt/ssh_tunnel/.secret:ro"
       networks:
         - localnetwork
   rsyslog:
-      image: rsyslog
+      image: dsp8ef9/syslog_rsyslog:latest
       build:
         context: ./
         dockerfile: ./rsyslog/Dockerfile
       volumes:
         - "./log:/var/log/remote"
-      ports:
-        - 514:514
       networks:
         - localnetwork
 networks:
