@@ -13,6 +13,7 @@ SSH_CONFIG_PATH="${SSH_DIR}/config"
 readarray -t hosts < "$SSH_HOSTS_LIST_FILE"
 
 for host in "${hosts[@]}"; do
+    
     command="ssh -F ${SSH_CONFIG_PATH} -NfT -o UserKnownHostsFile=${SSH_KNOWN_HOSTS_PATH} -R ${REMOTE_PORT}:${RSYSLOG_HOST}:514 ${host}"
-    pgrep -f -x "$command" > /dev/null 2>&1 || { echo "Connecting to ${host}..."; $command; }
+    pgrep -f -x "$command" > /dev/null 2>&1 || { echo "$(date "+%Y-%m-%dT%H:%M:%S") Connecting to ${host}..."; $command; }
 done
