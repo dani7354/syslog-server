@@ -7,7 +7,7 @@ SSH_KNOWN_HOSTS_PATH="${SSH_DIR}/known_hosts"
 SSH_CONFIG_PATH="${SSH_DIR}/config"
 
 [[ -r "$SSH_HOSTS_LIST_FILE"  ]] || { echo "SSH host list not found!" >&2; exit 1; }
-[[ -r "$SSH_KNOW_HOSTS_PATH"  ]] || { echo "SSH known hosts file not found!" >&2; exit 1; }
+[[ -r "$SSH_KNOWN_HOSTS_PATH"  ]] || { echo "SSH known hosts file not found!" >&2; exit 1; }
 [[ -r "$SSH_CONFIG_PATH"  ]] || { echo "SSH config not found!" >&2; exit 1; }
 
 readarray -t hosts < "$SSH_HOSTS_LIST_FILE"
