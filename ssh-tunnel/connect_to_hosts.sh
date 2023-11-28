@@ -12,7 +12,12 @@ SSH_CONFIG_PATH="${SSH_DIR}/config"
 
 
 connect() {
-    ssh -F "$SSH_CONFIG_PATH" -o "UserKnownHostsFile=${SSH_KNOWN_HOSTS_PATH}" -o "ExitOnForwardFailure=True" -R "${REMOTE_PORT}:${RSYSLOG_HOST}:514" "$1"
+    command="ssh -F ${SSH_CONFIG_PATH} -NfT -o UserKnownHostsFile=${SSH_KNOWN_HOSTS_PATH} -o ExitOnForwardFailure=True -R ${REMOTE_PORT}:${RSYSLOG_HOST}:514 ${1}"
+    eval $command
+    while [ $(pgrep --full "$command") ]; do
+        echo "Connection to ${1} still active..."
+        sleep 10
+    done
 }
 
 readarray -t hosts < "$SSH_HOSTS_LIST_FILE"
