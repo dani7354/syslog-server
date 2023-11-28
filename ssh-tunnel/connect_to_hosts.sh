@@ -10,9 +10,17 @@ SSH_CONFIG_PATH="${SSH_DIR}/config"
 [[ -r "$SSH_KNOWN_HOSTS_PATH"  ]] || { echo "SSH known hosts file not found!" >&2; exit 1; }
 [[ -r "$SSH_CONFIG_PATH"  ]] || { echo "SSH config not found!" >&2; exit 1; }
 
+
+connect() {
+    ssh -F "$SSH_CONFIG_PATH" -o "UserKnownHostsFile=${SSH_KNOWN_HOSTS_PATH}" -o "ExitOnForwardFailure=True" -R "${REMOTE_PORT}:${RSYSLOG_HOST}:514" "$1"
+}
+
 readarray -t hosts < "$SSH_HOSTS_LIST_FILE"
 
 for host in "${hosts[@]}"; do
-    command="ssh -F ${SSH_CONFIG_PATH} -Nf -o UserKnownHostsFile=${SSH_KNOWN_HOSTS_PATH} -o ExitOnForwardFailure=True -R ${REMOTE_PORT}:${RSYSLOG_HOST}:514 ${host}"
-    pgrep -f -x "$command" > /dev/null 2>&1 || { echo "$(date "+%Y-%m-%dT%H:%M:%S") Connecting to ${host}..."; $command; }
+    echo "Connecting to ${host}..."
+    connect "$host" &
 done
+
+echo "Waiting for connections to exit"
+wait
