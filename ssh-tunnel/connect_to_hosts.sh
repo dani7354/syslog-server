@@ -14,7 +14,7 @@ SSH_CONFIG_PATH="${SSH_DIR}/config"
 connect() {
     command="ssh -F ${SSH_CONFIG_PATH} -NfT -o UserKnownHostsFile=${SSH_KNOWN_HOSTS_PATH} -R ${REMOTE_PORT}:${RSYSLOG_HOST}:514 ${1}"
     eval $command
-    while pgrep -f "$command" ; do
+    while pgrep --quiet -f "$command" > /dev/null; do
         echo "Connection to ${1} active..."
         sleep 10
     done
